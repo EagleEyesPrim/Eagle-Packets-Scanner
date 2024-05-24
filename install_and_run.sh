@@ -12,11 +12,6 @@ echo "Installing the package..."
 cd "$SCRIPT_DIR"  # Change directory to the script's directory
 pip install .
 
-# Copy the program to the system path
-echo "Copying the program to the system path..."
-sudo cp "$SCRIPT_DIR/eagle_packets_scanner.py" /usr/local/bin/eagle_scanner
-sudo chmod +x /usr/local/bin/eagle_scanner
-
 # Run the program
 echo "Running the Eagle Packets Scanner..."
-eagle_scanner
+python eagle_scanner
