@@ -8,11 +8,11 @@ pip install -r requirements.txt
 echo "Installing the package..."
 python setup.py install
 
-# Move the program file to an easily accessible folder
-sudo cp /path/to/eagle_scanner /usr/local/bin
+# Get the file folder using environment variables
+SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-# Create a symbolic link to the playable file in a folder that is included in PATH
-sudo ln -s /usr/local/bin/eagle_scanner /usr/bin/eagle_scanner
+# Move the program file to an easily accessible folder
+sudo cp "$SCRIPT_DIR/eagle_scanner" /usr/local/bin
 
 # Run the program
 echo "Running the Eagle Packets Scanner..."
