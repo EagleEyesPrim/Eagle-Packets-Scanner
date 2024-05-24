@@ -1,4 +1,4 @@
-### Eagle Packets Scanner
+# Eagle Packets Scanner
 
 #### Introduction
 Eagle Packets Scanner is a network packet analysis tool designed to monitor and analyze packets sent and received on the internet connection of the client's device. The tool examines the source and destination IP addresses and determines whether they are trustworthy or suspicious using WHOIS queries.
