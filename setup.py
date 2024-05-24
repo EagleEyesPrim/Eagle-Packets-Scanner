@@ -6,11 +6,11 @@ setup(
     packages=find_packages(),
     install_requires=[
         'scapy',
-        'ipwhois',
+        'ipwhois'
     ],
     entry_points={
         'console_scripts': [
-            'eagle_scanner=eagle_packets_scanner:main',
+            'eagle_scanner = eagle_packets_scanner:main',
         ],
     },
 )
