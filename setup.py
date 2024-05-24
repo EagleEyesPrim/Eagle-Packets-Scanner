@@ -10,7 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'eagle_scanner=/usr/local/bin/eagle_scanner:main',
+            'eagle_scanner = eagle_packets_scanner:eagle_scanner',
         ],
     },
 )
