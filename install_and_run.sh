@@ -15,3 +15,7 @@ pip install .
 # Run the program
 echo "Running the Eagle Packets Scanner..."
 /usr/bin/python3 "$SCRIPT_DIR/eagle_packets_scanner.py"
+
+# Install the package again to ensure any changes in the source files are reflected
+echo "Re-installing the package to ensure any changes are reflected..."
+pip install .

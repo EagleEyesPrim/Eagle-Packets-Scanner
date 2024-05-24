@@ -6,7 +6,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         'scapy',
-        'ipwhois'
+        'ipwhois',
+        'pip install .'
     ],
     entry_points={
         'console_scripts': [
