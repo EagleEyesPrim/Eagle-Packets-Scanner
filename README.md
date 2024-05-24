@@ -17,24 +17,25 @@ Eagle Packets Scanner is a network packet analysis tool designed to monitor and 
    - `requirements.txt`
    - `setup.py`
    - `install_and_run.sh`
-  
+
+
    ```bash
    sudo git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
    ```
 
-2. **Set Up Environment**:
+1. **Set Up Environment**:
    Ensure you have Python installed on your system. You can check this by running the following command in the terminal:
    ```bash
    python --version
    ```
 
-3. **Make the Shell Script Executable**:
+2. **Make the Shell Script Executable**:
    Before running the shell script, the file needs to be made executable. Open the terminal, navigate to the project directory, then execute the following command:
    ```bash
    chmod +x install_and_run.sh
    ```
 
-4. **Run the Shell Script**:
+3. **Run the Shell Script**:
    Execute the shell script to install the requirements and run the program:
    ```bash
    ./install_and_run.sh
