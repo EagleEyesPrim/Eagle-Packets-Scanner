@@ -16,9 +16,9 @@ pip install .
 echo "Re-installing the package to ensure any changes are reflected..."
 pip install .
 
-# Copy the program to /usr/local/bin/
-echo "Copying the program to /usr/local/bin/..."
-cp "$SCRIPT_DIR/eagle_packets_scanner.py" /usr/local/bin/eagle_scanner
-chmod +x /usr/local/bin/eagle_scanner
+# Run the program
+echo "Running the Eagle Packets Scanner..."
+/usr/bin/python3 "$SCRIPT_DIR/eagle_packets_scanner.py"
+
 
 echo "Installation completed successfully."
