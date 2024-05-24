@@ -9,6 +9,7 @@ Eagle Packets Scanner is a network packet analysis tool designed to monitor and 
 - **Network Diagnostics**: Utilize the tool as part of diagnosing network issues.
 
 #### Installation Steps
+##### 1-Installing the Program on Linux:
 
 1. **Download the Program**:
    Download the project containing the following files:
@@ -46,6 +47,18 @@ After installation, you can run the program from anywhere in the terminal using 
 ```bash
 sudo eagle_scanner
 ```
+
+##### 2-Installing the Program on Windows:
+   - Download Eagle Packets Scanner project from GitHub.
+   - Navigate to the project directory in the command prompt.
+   - Run the following command to install requirements:
+     ```bash
+     pip install -r requirements.txt
+     ```
+   - After installation, run the program using the command:
+     ```bash
+     python eagle_packets_scanner.py
+     ```
 
 #### Program Functionality
 
