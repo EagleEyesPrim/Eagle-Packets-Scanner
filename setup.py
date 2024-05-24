@@ -7,7 +7,6 @@ setup(
     install_requires=[
         'scapy',
         'ipwhois',
-        'pip install .'
     ],
     entry_points={
         'console_scripts': [
