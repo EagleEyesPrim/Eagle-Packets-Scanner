@@ -1,6 +1,6 @@
 # Eagle Packets Scanner
 
-#### Introduction
+## Introduction
 Eagle Packets Scanner is a network packet analysis tool designed to monitor and analyze packets sent and received on the internet connection of the client's device. The tool examines the source and destination IP addresses and determines whether they are trustworthy or suspicious using WHOIS queries.
 
 #### Purpose of Using the Tool
@@ -8,7 +8,7 @@ Eagle Packets Scanner is a network packet analysis tool designed to monitor and 
 - **Security Analysis**: Identify the reputation of IP addresses and examine them to determine if they are trustworthy.
 - **Network Diagnostics**: Utilize the tool as part of diagnosing network issues.
 
-#### Installation Steps
+## Installation Steps
 #### 1-Installing the Program on Linux:
 
 1. **Download the Program**:
@@ -60,7 +60,7 @@ sudo eagle_scanner
      python eagle_packets_scanner.py
      ```
 
-#### Program Functionality
+## Program Functionality
 
 - **Packet Analysis**:
   - The program monitors all packets passing through your network interface.
@@ -74,7 +74,7 @@ sudo eagle_scanner
 - **Displaying Results**:
   - The source and destination IP addresses for each packet are displayed along with their status (trusted or suspicious).
 
-#### Notes
+## Notes
 - **Permissions**: The program must be run with administrator (root) privileges to analyze network packets.
 - **Security**: Ensure that you use the tool on your own network and with the consent of the network administrator to comply with security and privacy policies.
 
