@@ -27,8 +27,8 @@ def start_packet_sniffing():
     print("Starting packet sniffing...")
     scapy.sniff(prn=analyze_packets, store=False)
 
-def main():
+def eagle_scanner():
     start_packet_sniffing()
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__eagle_scanner__":
+    eagle_scanner()
