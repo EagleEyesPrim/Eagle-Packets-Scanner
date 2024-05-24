@@ -17,7 +17,7 @@ Eagle Packets Scanner is a network packet analysis tool designed to monitor and 
    - `requirements.txt`
    - `setup.py`
    - `install_and_run.sh`
-
+     
 
    ```bash
    sudo git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
