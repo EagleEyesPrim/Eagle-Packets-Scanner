@@ -14,4 +14,4 @@ pip install .
 
 # Run the program
 echo "Running the Eagle Packets Scanner..."
-python eagle_scanner
+python "$SCRIPT_DIR/eagle_packets_scanner.py"
