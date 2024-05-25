@@ -42,7 +42,7 @@ In summary, Eagle Packets Scanner is a versatile and powerful network analysis t
 
    ```sh
    git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
-   cd eagle_packets_scanner
+   cd Eagle_Packets_Scanner
    ```
 
 3. **Install the requirements:**
