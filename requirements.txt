@@ -1,0 +1,6 @@
+psutil
+scapy
+ipwhois
+blessed
+termcolor
+tabulate
