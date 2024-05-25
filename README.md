@@ -111,3 +111,6 @@ Once the program is running, a terminal-based graphical user interface will disp
 ## License
 
 Eagle Packets Scanner is distributed under the MIT License. See the `LICENSE` file for more information.
+
+
+## Note: The program will be continuously developed with additional features to enhance user performance
