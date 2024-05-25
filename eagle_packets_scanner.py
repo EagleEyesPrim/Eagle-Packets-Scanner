@@ -178,7 +178,7 @@ def main():
             return
 
         sniffing_thread = threading.Thread(target=start_packet_sniffing, args=(interface,))
-        sniffing_thread.daemon = True
+        sniffing_thread.dasniffing_thread.daemon = True
         sniffing_thread.start()
 
         combined_thread = threading.Thread(target=print_combined_table, args=(term,))
@@ -198,3 +198,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
