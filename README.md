@@ -106,7 +106,7 @@ In summary, Eagle Packets Scanner is a versatile and powerful network analysis t
 
 ## Usage
 
-Once the program is running, a terminal-based graphical user interface will display network traffic and protocol analysis. The table will be continuously updated to reflect the latest captured data.
+Once the program is running, a terminal-based graphical user interface will display network traffic and protocol analysis. The table will be continuously updated to reflect the latest captured data. Ensure that you use this tool within the bounds of the law.
 
 ## License
 
