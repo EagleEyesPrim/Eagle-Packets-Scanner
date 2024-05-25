@@ -41,7 +41,7 @@ In summary, Eagle Packets Scanner is a versatile and powerful network analysis t
    Clone this repository to your local machine:
 
    ```sh
-   git clone https://github.com/YourUsername/eagle_packets_scanner.git
+   git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
    cd eagle_packets_scanner
    ```
 
