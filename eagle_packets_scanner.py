@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import psutil
 import scapy.all as scapy
 import threading
@@ -138,7 +140,7 @@ def print_combined_table(term):
 
         if packet_data:
             combined_table = []
-            for src, src_status, dst, dst_status,            protocol in packet_data:
+            for src, src_status, dst, dst_status, protocol in packet_data:
                 combined_table.append([src, src_status, dst, dst_status, protocol])
 
             with term.location():
@@ -196,4 +198,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
