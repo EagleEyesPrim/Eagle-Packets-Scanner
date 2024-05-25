@@ -1,6 +1,14 @@
 # Eagle Packets Scanner
 
-Eagle Packets Scanner (EPS) is a tool for analyzing network packets and inspecting communication protocols between devices on the network. The program uses the Scapy library to capture and analyze data from packets passing through network interfaces and the IPWhois library to check the reputation of IP addresses. Results are displayed in a dynamically updated, color-coded table in the terminal interface.
+Eagle Packets Scanner (EPS) is a comprehensive tool designed for real-time network packet analysis and protocol inspection. Built with Python, it leverages powerful libraries such as Scapy for packet capture and IPWhois for IP reputation checking. This tool is essential for network administrators, security professionals, and anyone interested in monitoring and analyzing network traffic.
+
+EPS captures packets from network interfaces, analyzes them to determine source and destination IP addresses, and checks the reputation of these IPs. The tool supports a wide range of network protocols, including TCP, UDP, HTTP, HTTPS, and more, providing detailed insights into network communications.
+
+One of the standout features of EPS is its terminal-based graphical user interface, implemented using the Blessed library. This interface presents real-time data in a clear, color-coded, and dynamically updating table, making it easy to monitor network activity.
+
+EPS is designed to be user-friendly and accessible. Installation is straightforward, with a simple setup process that includes installing required Python libraries and running the script. The tool is cross-platform, with instructions provided for both Linux and Windows systems.
+
+In summary, Eagle Packets Scanner is a versatile and powerful network analysis tool that offers detailed insights into network traffic, making it an invaluable resource for maintaining network security and performance.
 
 ## Features
 
