@@ -1,86 +1,105 @@
 # Eagle Packets Scanner
 
-## Introduction
-Eagle Packets Scanner is a network packet analysis tool designed to monitor and analyze packets sent and received on the internet connection of the client's device. The tool examines the source and destination IP addresses and determines whether they are trustworthy or suspicious using WHOIS queries.
+Eagle Packets Scanner (EPS) is a tool for analyzing network packets and inspecting communication protocols between devices on the network. The program uses the Scapy library to capture and analyze data from packets passing through network interfaces and the IPWhois library to check the reputation of IP addresses. Results are displayed in a dynamically updated, color-coded table in the terminal interface.
 
-#### Purpose of Using the Tool
-- **Network Monitoring**: Assist users in analyzing network packets passing through their network.
-- **Security Analysis**: Identify the reputation of IP addresses and examine them to determine if they are trustworthy.
-- **Network Diagnostics**: Utilize the tool as part of diagnosing network issues.
+## Features
 
-## Installation Steps
-#### 1-Installing the Program on Linux:
+- Real-time network packet capture and analysis.
+- IP address reputation checking using IPWhois.
+- Support for a wide range of protocols.
+- Organized and continuously updated data display in a table.
+- Terminal-based graphical user interface using the Blessed library.
 
-1. **Download the Program**:
-   Download the project containing the following files:
-   - `eagle_packets_scanner.py`
-   - `requirements.txt`
-   - `setup.py`
-   - `install_and_run.sh`
-     
-   Use This line code ↓↓
-   ```bash
-   sudo git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
+## Requirements
+
+- Python 3.6 or later.
+- Required Python libraries: psutil, scapy, ipwhois, blessed, termcolor, tabulate.
+
+## Installation
+
+### Linux
+
+1. **Install basic requirements:**
+
+   Ensure you have Python 3 installed on your system. You can install Python 3 using the appropriate package manager for your system:
+
+   ```sh
+   sudo apt update
+   sudo apt install python3 python3-pip
    ```
 
-1. **Set Up Environment**:
-   Ensure you have Python installed on your system. You can check this by running the following command in the terminal:
-   ```bash
-   python --version
+2. **Clone the repository:**
+
+   Clone this repository to your local machine:
+
+   ```sh
+   git clone https://github.com/YourUsername/eagle_packets_scanner.git
+   cd eagle_packets_scanner
    ```
 
-2. **Make the Shell Script Executable**:
-   Before running the shell script, the file needs to be made executable. Open the terminal, navigate to the project directory, then execute the following command:
-   ```bash
-   chmod +x install_and_run.sh
+3. **Install the requirements:**
+
+   Install the required libraries using pip:
+
+   ```sh
+   pip3 install -r requirements.txt
    ```
 
-3. **Run the Shell Script**:
-   Execute the shell script to install the requirements and run the program:
-   ```bash
-   ./install_and_run.sh
+4. **Make the script executable:**
+
+   ```sh
+   chmod +x eagle_packets_scanner.py
    ```
 
-   This script will perform the following steps:
-   - Install the required libraries listed in `requirements.txt`.
-   - Install the package using `setup.py`.
-   - Run the Eagle Packets Scanner program with administrator privileges.
+5. **Move the script to an accessible directory:**
 
-#### Running the Program
+   ```sh
+   sudo mv eagle_packets_scanner.py /usr/local/bin/eagle_packets_scanner
+   ```
 
-After installation, you can run the program from anywhere in the terminal using the following command:
-```bash
-sudo eagle_scanner
-```
+6. **Run the program:**
 
-#### 2-Installing the Program on Windows:
-   - Download Eagle Packets Scanner project from GitHub.
-   - Navigate to the project directory in the command prompt.
-   - Run the following command to install requirements:
-     ```bash
-     pip install -r requirements.txt
-     ```
-   - After installation, run the program using the command:
-     ```bash
-     python eagle_packets_scanner.py
-     ```
+   Now you can run the program from any terminal using the command:
 
-## Program Functionality
+   ```sh
+   eagle_packets_scanner
+   ```
 
-- **Packet Analysis**:
-  - The program monitors all packets passing through your network interface.
-  - For each captured packet, it extracts the source and destination IP addresses.
+### Windows
 
-- **Checking IP Reputation**:
-  - The program utilizes the `ipwhois` library for WHOIS queries to determine the reputation of IP addresses.
-  - If the query results contain entities, the IP address is considered trustworthy; otherwise, it is flagged as suspicious.
-  - Private or reserved IP addresses are handled as a special case.
+1. **Install Python:**
 
-- **Displaying Results**:
-  - The source and destination IP addresses for each packet are displayed along with their status (trusted or suspicious).
+   Download and install Python 3 from [python.org](https://www.python.org/).
 
-## Notes
-- **Permissions**: The program must be run with administrator (root) privileges to analyze network packets.
-- **Security**: Ensure that you use the tool on your own network and with the consent of the network administrator to comply with security and privacy policies.
+2. **Clone the repository:**
 
-With these steps, you can easily install and use the Eagle Packets Scanner tool to analyze and monitor data traffic on your network.
+   Clone this repository to your local machine using Git Bash or any other tool:
+
+   ```sh
+   git clone https://github.com/YourUsername/eagle_packets_scanner.git
+   cd eagle_packets_scanner
+   ```
+
+3. **Install the requirements:**
+
+   Install the required libraries using pip:
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4. **Run the program:**
+
+   You can run the program using the following command in PowerShell or CMD:
+
+   ```sh
+   python eagle_packets_scanner.py
+   ```
+
+## Usage
+
+Once the program is running, a terminal-based graphical user interface will display network traffic and protocol analysis. The table will be continuously updated to reflect the latest captured data.
+
+## License
+
+Eagle Packets Scanner is distributed under the MIT License. See the `LICENSE` file for more information.
