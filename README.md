@@ -27,6 +27,9 @@ cd eagle-packets-scanner
 pip install -r requirements.txt
 ```
 ```bash
+python setup.py install
+```
+```bash
 python eagle_packets_scanner.py
 ```
 
