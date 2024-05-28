@@ -1,5 +1,5 @@
 # Eagle Packets Scanner
-![EPS Logo](https://github.com/EagleEyesPrim/Media-Repository/blob/78cae09dc18cd5aae996dca874f4de01bdd3842d/Stay%20up%20to%20date%20with%20all%20your%20device%20communications.png)
+![EPS Logo](https://github.com/EagleEyesPrim/Media-Repository/blob/d49425fb911acb9b0394ac66e900245eecc20aff/Stay%20up%20to%20date%20with%20all%20your%20device%20communications%20(1).png)
 
 
 ## Description:
