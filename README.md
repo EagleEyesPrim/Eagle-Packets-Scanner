@@ -1,7 +1,7 @@
 ---
 
 # Eagle Packets Scanner
-![]([https://github.com/yourusername/media/blob/main/yourimage.jpg](https://github.com/EagleEyesPrim/Media-Repository/blob/main/Stay%20up%20to%20date%20with%20all%20your%20device%20communications.png))
+![]([https://github.com/EagleEyesPrim/Media-Repository/blob/main/Stay%20up%20to%20date%20with%20all%20your%20device%20communications.png)
 
 
 ## Description:
