@@ -1,4 +1,6 @@
+#Get From Eviro
 import os
+import platform
 import psutil
 import scapy.all as scapy
 import threading
@@ -11,7 +13,7 @@ from tabulate import tabulate
 from mac_vendor_lookup import MacLookup
 
 #Get From Home
-from packet_functions import get_mac_vendor, apply_filters, analyze_packets
+from packet_functions import analyze_packets
 import protocols
 import sys
 
@@ -57,7 +59,7 @@ filters = {
 
 # Function to clear the screen based on the operating system
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
 
 # Function to handle cleanup on exit
 def cleanup():
@@ -167,7 +169,7 @@ def main():
                         colored(protocol, protocol_color),
                         colored(packet_summary, user_ip_color),
                         colored(packet_length, "magenta"),
-                        colored(packet_time, "blue"),
+                        colored(packet_time, "white"),
                         colored(program_name, "white")
                     ])
 
@@ -184,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
