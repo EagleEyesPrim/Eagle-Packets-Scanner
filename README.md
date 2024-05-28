@@ -44,6 +44,6 @@ Contributions to Eagle Packets Scanner are welcome! If you find any bugs or have
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ### Author:
-Eagle Packets Scanner is developed by Eagle Eyes.
+Eagle Packets Scanner is developed by Eagle Eyes Prim.
 
 ---
