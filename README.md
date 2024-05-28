@@ -1,6 +1,8 @@
 ---
 
 # Eagle Packets Scanner
+![]([https://github.com/yourusername/media/blob/main/yourimage.jpg](https://github.com/EagleEyesPrim/Media-Repository/blob/main/Stay%20up%20to%20date%20with%20all%20your%20device%20communications.png))
+
 
 ## Description:
 Eagle Packets Scanner is a powerful network tool for monitoring and analyzing network traffic in real-time. It provides users with the ability to capture, inspect, and analyze packets flowing through their network interfaces. With its intuitive interface and rich features, Eagle Packets Scanner is suitable for network administrators, cybersecurity professionals, and enthusiasts who want to gain insights into their network activity.
@@ -44,6 +46,6 @@ Contributions to Eagle Packets Scanner are welcome! If you find any bugs or have
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ### Author:
-Eagle Packets Scanner is developed by: ### Eagle Eyes Prim.
+Eagle Packets Scanner is developed by Eagle Eyes Prim.
 
 ---
