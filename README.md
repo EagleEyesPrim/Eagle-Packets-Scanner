@@ -18,7 +18,7 @@ Eagle Packets Scanner is a powerful network tool for monitoring and analyzing ne
 ## Installation:
 To install Eagle Packets Scanner, follow these steps:
 ```bash
-git clone https://github.com/yourusername/eagle-packets-scanner.git
+git clone https://github.com/EagleEyesPrim/eagle-packets-scanner.git
 ```
 ```bash
 cd eagle-packets-scanner
