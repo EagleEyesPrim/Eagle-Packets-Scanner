@@ -21,7 +21,7 @@ To install Eagle Packets Scanner, follow these steps:
 git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
 ```
 ```bash
-cd eagle-packets-scanner
+cd Eagle-Packets-Scanner
 ```
 Run Your Root: ↓↓
 ```bash
