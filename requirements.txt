@@ -1,3 +1,4 @@
+python3
 blessed
 ipwhois
 mac-vendor-lookup
@@ -5,3 +6,4 @@ psutil
 scapy
 termcolor
 tabulate
+build
