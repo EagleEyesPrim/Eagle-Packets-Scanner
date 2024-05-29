@@ -41,9 +41,6 @@ pip install -r requirements.txt
 ```bash
 pip install .
 ```
-```bash
-pip install setup.py 
-```
 #### Running the Program
 ```bash
 epscanner
