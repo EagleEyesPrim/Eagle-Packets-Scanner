@@ -17,25 +17,36 @@ Eagle Packets Scanner is a powerful network tool for monitoring and analyzing ne
 
 ## Installation:
 To install Eagle Packets Scanner, follow these steps:
+### Clone the repository:
 ```bash
 git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
 ```
+### Navigate to the project directory:
 ```bash
 cd Eagle-Packets-Scanner
 ```
-Run Your Root: ↓↓
+### Run Your Root:
 ```bash
 sudo su
 ```
-Then: ↓↓
+### Upgrade pip, setuptools, and wheel:
+```bash
+pip install --upgrade pip setuptools wheel
+```
+### Install the dependencies:
 ```bash
 pip install -r requirements.txt
+```
+### Install the package:
+```bash
+pip install .
 ```
 ```bash
 pip install setup.py 
 ```
+## Running the Program
 ```bash
-python eagle_packets_scanner.py
+epscanner
 ```
 
 ### Usage:
