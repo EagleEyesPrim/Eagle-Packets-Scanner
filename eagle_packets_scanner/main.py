@@ -1,4 +1,24 @@
-#Get From Eviro
+# Copyright 2024 Eagle Eyes Prim
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+
 import os
 import platform
 import psutil
@@ -13,7 +33,7 @@ from tabulate import tabulate
 from mac_vendor_lookup import MacLookup
 
 #Get From Home
-import protocols
+from eagle_packets_scanner import protocols
 import sys
 
 # List to store packet data
@@ -99,20 +119,6 @@ def save_latest_to_log(packet_data):
 def start_packet_sniffing(interface):
     scapy.sniff(iface=interface, prn=lambda pkt: analyze_packets(pkt, filters, temp_packet_data, data_lock), store=False, stop_filter=lambda x: not sniffing)
 
-# Function to check IP reputation
-def check_ip_reputation(ip):
-    try:
-        obj = IPWhois(ip)
-        res = obj.lookup_rdap()
-        if 'entities' in res:
-            return "Trustworthy"
-        else:
-            return "Suspicious"
-    except IPDefinedError:
-        return "Private/Reserved"
-    except Exception as e:
-        return f"Unknown ({e})"
-
 # Function to get vendor by MAC address
 def get_mac_vendor(mac_address):
     try:
@@ -136,6 +142,20 @@ def apply_filters(packet, filters):
         return False
 
     return True
+
+# Function to check IP reputation
+def check_ip_reputation(ip):
+    try:
+        obj = IPWhois(ip)
+        res = obj.lookup_rdap()
+        if 'entities' in res:
+            return "Trustworthy"
+        else:
+            return "Suspicious"
+    except IPDefinedError:
+        return "Private/Reserved"
+    except Exception as e:
+        return f"Unknown ({e})"
 
 # Function to analyze packets
 def analyze_packets(packet, filters, temp_packet_data, data_lock):
@@ -181,12 +201,10 @@ def analyze_packets(packet, filters, temp_packet_data, data_lock):
         with data_lock:
             temp_packet_data.append(packet_entry)
 
-
+#Main
 def main():
     global temp_packet_data, last_displayed_packet_id
-    
-    print("Eagle Packets Scanner is running")
-    
+
     try:
         # Initialize temp_packet_data to an empty list
         temp_packet_data = []
@@ -243,7 +261,7 @@ def main():
                         colored(protocol, protocol_color),
                         colored(packet_summary, user_ip_color),
                         colored(packet_length, "magenta"),
-                        colored(packet_time, "white"),
+                        colored(packet_time, "blue"),
                         colored(program_name, "white")
                     ])
 
