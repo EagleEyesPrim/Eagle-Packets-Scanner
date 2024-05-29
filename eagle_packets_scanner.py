@@ -112,7 +112,9 @@ def check_ip_reputation(ip):
 
 def main():
     global temp_packet_data, last_displayed_packet_id
-
+    
+    print("Eagle Packets Scanner is running")
+    
     try:
         # Initialize temp_packet_data to an empty list
         temp_packet_data = []

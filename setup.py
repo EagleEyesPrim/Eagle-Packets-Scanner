@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'epscanner = eagle_packets_scanner:main'  # تأكد أن `main` هو دالة البدء في `eagle_packets_scanner`
+            'epscanner = Eagle_Packets_Scanner:main' 
         ]
     },
     author='Eagle Eyes Prim',
