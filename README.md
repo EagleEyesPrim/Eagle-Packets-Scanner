@@ -23,10 +23,11 @@ git clone https://github.com/EagleEyesPrim/Eagle-Packets-Scanner.git
 ```bash
 cd eagle-packets-scanner
 ```
-Run Your Root:
+Run Your Root: ↓↓
 ```bash
 sudo su
 ```
+Then: ↓↓
 ```bash
 pip install -r requirements.txt
 ```
