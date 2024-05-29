@@ -32,7 +32,7 @@ Then: ↓↓
 pip install -r requirements.txt
 ```
 ```bash
-python3 setup.py install
+pip install setup.py 
 ```
 ```bash
 python eagle_packets_scanner.py
