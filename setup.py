@@ -16,7 +16,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'epscanner = Eagle_Packets_Scanner:main' 
+            'epscanner = eagle_packets_scanner.main:main' 
         ]
     },
     author='Eagle Eyes Prim',
