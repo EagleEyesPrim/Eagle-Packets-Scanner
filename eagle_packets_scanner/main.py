@@ -1,22 +1,4 @@
-# Copyright 2024 Eagle Eyes Prim
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+# eagle_packets_scanner.py
 
 
 import os
@@ -31,32 +13,23 @@ from blessed import Terminal
 from termcolor import colored
 from tabulate import tabulate
 from mac_vendor_lookup import MacLookup
-
-#Get From Home
-from eagle_packets_scanner import protocols
 import sys
+import sqlite3
 
-# List to store packet data
+
+from eagle_packets_scanner.protocols import protocol_names
+
 packet_data = []
 temp_packet_data = []
 
-# Flag to control the packet sniffing
 sniffing = True
 
-# Create a terminal instance
 term = Terminal()
 
-# Lock for thread synchronization
 data_lock = threading.Lock()
 
-# Protocols supported by dpkt
-protocol_names = protocols.protocol_names
-
-# Initialize MacLookup instance
 mac_lookup = MacLookup()
 
-
-# Colors
 source_ip_color = "white"
 destination_ip_color = "white"
 source_status_color = "green"
@@ -67,37 +40,52 @@ suspicious_color = "red"
 trustworthy_color = "green"
 user_ip_color = "white"
 
-# Log file name
-log_filename = "packet_logs.txt"
+db_filename = "packet_logs.db"
 
-# Initialize MacLookup instance
-mac_lookup = MacLookup()
+conn = sqlite3.connect(db_filename)
+c = conn.cursor()
+c.execute('''
+CREATE TABLE IF NOT EXISTS packets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    src_ip TEXT,
+    src_status TEXT,
+    src_port TEXT,
+    src_mac TEXT,
+    src_vendor TEXT,
+    dst_ip TEXT,
+    dst_status TEXT,
+    dst_port TEXT,
+    dst_mac TEXT,
+    dst_vendor TEXT,
+    vlan TEXT,
+    protocol TEXT,
+    packet_summary TEXT,
+    packet_length INTEGER,
+    packet_time TEXT,
+    program_name TEXT
+)
+''')
+conn.commit()
+conn.close()
 
-# Define filters (these can be set by user input)
+def clear_screen():
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
+
+def cleanup():
+    global sniffing
+    sniffing = False
+    print("\nStopping packet sniffing...")
+    sys.exit(0)
+
+import signal
+signal.signal(signal.SIGINT, lambda sig, frame: cleanup())
+
 filters = {
     "src_ip": None,  # Example filter
     "dst_ip": None,
     "protocol": None
 }
 
-# Function to clear the screen based on the operating system
-def clear_screen():
-    os.system('cls' if platform.system() == 'Windows' else 'clear')
-
-# Function to handle cleanup on exit
-def cleanup():
-    global sniffing
-    sniffing = False
-    with data_lock:
-        save_latest_to_log(packet_data)
-    print("\nStopping packet sniffing...")
-    sys.exit(0)
-
-# Set up signal handler for clean exit
-import signal
-signal.signal(signal.SIGINT, lambda sig, frame: cleanup())
-
-# Function to get color based on status
 def get_color(status):
     if status == "Trustworthy":
         return trustworthy_color
@@ -108,18 +96,23 @@ def get_color(status):
     else:
         return "white"
 
-# Function to save the latest packet data to a log file
-def save_latest_to_log(packet_data):
-    if packet_data:
-        with open(log_filename, 'w') as file:  # Use 'w' to overwrite the file
-            table_str = tabulate(packet_data, headers=["Source IP", "Source Status", "Port", "MAC", "Vendor", "Destination IP", "Destination Status", "Port", "MAC", "Vendor", "VLAN", "Protocol", "Packet Summary", "Packet Length", "Packet Time", "Program Name"])
-            file.write(table_str + "\n")
+def save_to_db(packet_data):
+    conn = sqlite3.connect(db_filename)
+    c = conn.cursor()
+    for packet in packet_data:
+        c.execute('''
+        INSERT INTO packets (
+            src_ip, src_status, src_port, src_mac, src_vendor,
+            dst_ip, dst_status, dst_port, dst_mac, dst_vendor,
+            vlan, protocol, packet_summary, packet_length, packet_time, program_name
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', packet)
+    conn.commit()
+    conn.close()
 
-# Function to start packet sniffing
 def start_packet_sniffing(interface):
     scapy.sniff(iface=interface, prn=lambda pkt: analyze_packets(pkt, filters, temp_packet_data, data_lock), store=False, stop_filter=lambda x: not sniffing)
 
-# Function to get vendor by MAC address
 def get_mac_vendor(mac_address):
     try:
         vendor = mac_lookup.lookup(mac_address)
@@ -127,7 +120,6 @@ def get_mac_vendor(mac_address):
     except Exception:
         return "Unknown Vendor"
 
-# Function to apply filters to packets
 def apply_filters(packet, filters):
     ip_src = packet[scapy.IP].src
     ip_dst = packet[scapy.IP].dst
@@ -143,7 +135,6 @@ def apply_filters(packet, filters):
 
     return True
 
-# Function to check IP reputation
 def check_ip_reputation(ip):
     try:
         obj = IPWhois(ip)
@@ -157,7 +148,6 @@ def check_ip_reputation(ip):
     except Exception as e:
         return f"Unknown ({e})"
 
-# Function to analyze packets
 def analyze_packets(packet, filters, temp_packet_data, data_lock):
     if packet.haslayer(scapy.IP):
         if not apply_filters(packet, filters):
@@ -169,24 +159,20 @@ def analyze_packets(packet, filters, temp_packet_data, data_lock):
         dst_status = check_ip_reputation(ip_dst)
         protocol_number = packet[scapy.IP].proto
         protocol_name = protocol_names.get(protocol_number, "Unknown Protocol")
-        packet_summary = packet.summary()  # Packet summary including protocol
+        packet_summary = packet.summary() 
 
-        src_mac = dst_mac = vlan = program_name = "N/A"  # Default values
+        src_mac = dst_mac = vlan = program_name = "N/A"  
 
-        # Check if packet has Ethernet layer
         if packet.haslayer(scapy.Ether):
             src_mac = packet[scapy.Ether].src
             dst_mac = packet[scapy.Ether].dst
 
-            # Get vendor names for MAC addresses
             src_vendor = get_mac_vendor(src_mac)
             dst_vendor = get_mac_vendor(dst_mac)
 
-            # Check if packet has VLAN layer
             if packet.haslayer(scapy.Dot1Q):
                 vlan = packet[scapy.Dot1Q].vlan
 
-        # Check if packet has TCP layer
         if packet.haslayer(scapy.TCP):
             src_port = packet[scapy.TCP].sport
             dst_port = packet[scapy.TCP].dport
@@ -201,24 +187,20 @@ def analyze_packets(packet, filters, temp_packet_data, data_lock):
         with data_lock:
             temp_packet_data.append(packet_entry)
 
-#Main
+
 def main():
     global temp_packet_data, last_displayed_packet_id
 
     try:
-        # Initialize temp_packet_data to an empty list
         temp_packet_data = []
 
-        # Set last_displayed_packet_id to negative infinity initially
         last_displayed_packet_id = float('-inf')
 
-        # Get available network interfaces
         interfaces = psutil.net_if_addrs()
         print("Available Network Interfaces:")
         for index, (interface_name, _) in enumerate(interfaces.items(), 1):
             print(f"{index}. {interface_name}")
 
-        # Select the interface used by the user on the device
         while True:
             try:
                 interface_index = int(input("Enter the number of the interface you want to use: "))
@@ -241,6 +223,7 @@ def main():
             with data_lock:
                 if temp_packet_data:
                     packet_data.extend(temp_packet_data)
+                    save_to_db(temp_packet_data)
                     temp_packet_data = []
 
             if packet_data:
@@ -249,14 +232,14 @@ def main():
                     combined_table.append([
                         colored(src, source_ip_color),
                         colored(src_status, get_color(src_status)),
-                        colored(src_port, source_status_color),  # Add source port
-                        colored(src_mac, source_status_color),  # Add source MAC
-                        colored(src_vendor, source_status_color),  # Add source Vendor
+                        colored(src_port, source_status_color),
+                        colored(src_mac, source_status_color),
+                        colored(src_vendor, source_status_color),
                         colored(dst, destination_ip_color),
                         colored(dst_status, get_color(dst_status)),
-                        colored(dst_port, destination_status_color),  # Add destination port
-                        colored(dst_mac, destination_status_color),  # Add destination MAC
-                        colored(dst_vendor, destination_status_color),  # Add destination Vendor
+                        colored(dst_port, destination_status_color),
+                        colored(dst_mac, destination_status_color),
+                        colored(dst_vendor, destination_status_color),
                         colored(vlan, "yellow"),
                         colored(protocol, protocol_color),
                         colored(packet_summary, user_ip_color),
@@ -271,11 +254,8 @@ def main():
 
                 last_displayed_packet_id = len(packet_data) - 1
 
-            save_latest_to_log(packet_data)
-
     except Exception as e:
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
-
