@@ -1,5 +1,5 @@
 # Eagle Packets Scanner
-![EPS Logo](https://github.com/EagleEyesPrim/Media-Repository/blob/fd4ccd758298f9eca3b15cdfcb7e92de88155f49/Eagle%20Packets%20Scanner.png)
+![EPS Logo](https://github.com/EagleEyesPrim/Eagle-Packets-Scanner/blob/f853acde04e2b7656a1ab168037859622d808718/Eagle%20Packets%20Scanner%20%7B%20Version%201.8.8%20%7D.png)
 
 
 ## Description:
